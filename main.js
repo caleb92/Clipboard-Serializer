@@ -1,4 +1,4 @@
-document.addEventListener('onload', function() {
+window.onload = function() {
   console.log('page loaded');
   var serializeButton = document.getElementById('serialize');
   serializeButton.addEventListener('click',function() {
