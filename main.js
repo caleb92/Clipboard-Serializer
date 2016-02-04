@@ -8,4 +8,4 @@ window.onload = function() {
     outputEl.value = JSON.stringify(inputEl.value);
     console.log(JSON.stringify(inputEl.value))
   });
-})
+}
