@@ -1,4 +1,4 @@
-window.addEventListener('onload', function() {
+document.addEventListener('onload', function() {
   console.log('page loaded');
   var serializeButton = document.getElementById('serialize');
   serializeButton.addEventListener('click',function() {
@@ -6,5 +6,6 @@ window.addEventListener('onload', function() {
     var inputEl = document.getElementById('input');
     var outputEl = document.getElementById('output');
     outputEl.value = JSON.stringify(inputEl.value);
+    console.log(JSON.stringify(inputEl.value))
   });
 })
