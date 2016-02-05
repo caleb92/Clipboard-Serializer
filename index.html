@@ -11,14 +11,32 @@
     <h1>Clipboard Serializer</h1>
   </header>
   <main>
+  	<div id="options">
+		<div class="form-group">
+  	  		<p>Copied From</p>
+  	  		<form id="input-form">
+  	    		<label><input type="radio"  name="input-type" value="gs" checked/>Google Sheets</label>
+  	    		<label><input type="radio"  name="input-type" value="excel" disabled />Excel</label>
+  	  		</form>
+  		</div>
+  		<div class="form-group">
+  			<p>Output As</p>
+  			<form id="output-form">
+  			    <label><input type="radio" name="output-type" value="js-array-objects" checked/>JS Objects</label>
+  			    <label><input type="radio" name="output-type" value="js-array-2d" />JS Array (2d)</label>
+  			    <label><input type="radio" name="output-type" value="js-array-1d" />JS Array (1d)</label>
+  			    <label><input type="radio" name="output-type" value="csv" />CSV</label>
+  			</form>
+  		</div>
+  	</div>
 	<div>
-		<textarea id="input"></textarea>
+		<textarea id="input" wrap="off"></textarea>
 	</div>
 	<div>
-		<textarea id="output"></textarea>
+		<input id="output"></input>
 	</div>
-	<button id="serialize" class="action">Serialize</button>
-	<div id="messages"></div>
+	<button id="serialize">Serialize</button>
+	<span id="message">Copied To Clipboard!</span>
   </main>
   <script src="main.js"></script>
 </body>

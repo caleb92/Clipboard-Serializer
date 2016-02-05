@@ -1,24 +1,78 @@
 body {
-    width: 640px;
-    margin: auto;
-    background-color: #bbb;
+    background-color: #303030;
+}
+
+header {
+    background-color: #212121;
 }
 
 h1 {
-    background-color: #ddd;
     padding: 16px;
     text-align: center;
+    color: #fff;
 }
 
-div {
-    padding: 8px 0px;
+main {
+    width: 640px;
+    margin: auto;
+    background-color: #424242;
+    padding:12px;
+    color: #fff;
+    opacity: .7;
+    box-shadow: 5px 5px 10px #212121;
+    border-radius: 2px;
+}
+
+main > div {
+    padding-bottom: 8px;
+}
+
+.form-group {
+    display: inline-block;
+    padding-left: 16px;
+    vertical-align: top;
+}
+.form-group label {
+    display: block;
+    /*color: #fff;*/
+    /*opacity: .7;*/
+}
+.form-group p {
+    margin: 0px 0px 4px 0px;
+    /*color: #fff;*/
 }
 
 textarea {
-  width:100%;
-  height: 100%;
+    min-height: 120px;
+    resize: none;
 }
 
-textarea #input {
-    height: 240px;
+#input, #output {
+    width:100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+#message {
+    margin-left:12px;
+    font-size:16px;
+    vertical-align: middle;
+    
+    opacity: 0;
+    transition: opacity 1.5s ease-in;
+    -ms-transition: opacity 1.5s ease-in;
+    -moz-transition: opacity 1.5s ease-in;
+    -webkit-transition: opacity 1.5s ease-in;
+}
+
+#message.show {
+    opacity: 1;
+    transition: opacity .5s ease-out;
+    -ms-transition: opacity .5s ease-out;
+    -moz-transition: opacity .5s ease-out;
+    -webkit-transition: opacity .5s ease-out;
+}
+
+.hidden {
+    display: none;
 }
