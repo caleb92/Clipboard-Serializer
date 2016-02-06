@@ -7,29 +7,30 @@ header {
 }
 
 h1 {
-    padding: 16px;
+    padding: .8em;
     text-align: center;
     color: #fff;
 }
 
 main {
-    width: 640px;
+    width: 100%;
+    max-width: 640px;
     margin: auto;
     background-color: #424242;
-    padding:12px;
+    padding:1em;
     color: #fff;
     opacity: .7;
-    box-shadow: 5px 5px 10px #212121;
-    border-radius: 2px;
+    box-shadow: .2em .2em .4em #212121;
+    border-radius: .1em;
 }
 
 main > div {
-    padding-bottom: 8px;
+    padding-bottom: 1em;
 }
 
 .form-group {
     display: inline-block;
-    padding-left: 16px;
+    padding-left: 1.5em;
     vertical-align: top;
 }
 .form-group label {
@@ -38,12 +39,12 @@ main > div {
     /*opacity: .7;*/
 }
 .form-group p {
-    margin: 0px 0px 4px 0px;
+    margin: 0em 0em .3em 0em;
     /*color: #fff;*/
 }
 
 textarea {
-    min-height: 120px;
+    min-height: 10em;
     resize: none;
 }
 
@@ -54,8 +55,8 @@ textarea {
 }
 
 #message {
-    margin-left:12px;
-    font-size:16px;
+    margin-left: 1em;
+    font-size:1.3em;
     vertical-align: middle;
     
     opacity: 0;
