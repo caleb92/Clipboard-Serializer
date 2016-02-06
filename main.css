@@ -37,6 +37,9 @@ main {
     padding-left: 1.5em;
     vertical-align: top;
 }
+div.form-group + div.form-group {
+    padding-top: 12px;
+}
 .form-group label {
     display: block;
 }
