@@ -21,7 +21,7 @@ main {
     opacity: .7;
     box-shadow: .2em .2em .4em #212121;
     border-radius: .1em;
-    font: .9em/1.3em arial, sans-serif;
+    font: 1em/1.3em arial, sans-serif;
 }
 
 #container {
@@ -48,12 +48,12 @@ input[type="radio"] {
     border-radius: 50%;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    height: 1.2em;
+    height: 1.5em;
     margin: 0 .5em 0 0;
     outline: 0;
     position: relative;
     top: .2em;
-    width: 1.2em;
+    width: 1.5em;
 }
 .form-group p {
     margin: 0em 0em .3em 0em;
