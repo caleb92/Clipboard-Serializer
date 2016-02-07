@@ -1,11 +1,10 @@
 body {
     background-color: #303030;
+    margin: 0px;
 }
 
 header {
     background-color: #212121;
-    width: 110%;
-    margin-left: -1em;
 }
 
 h1 {
