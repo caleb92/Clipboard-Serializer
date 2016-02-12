@@ -17,8 +17,24 @@
 		<div class="form-group">
   	  		<p>Delimiters</p>
   	  		<form id="delimiters-form">
-  	    		<label><input type="radio"  name="input-type" value="gs" checked/>Google Sheets</label>
-  	    		<label><input type="radio"  name="input-type" value="excel" disabled />Excel</label>
+  	    		<label>
+  	    			<select id="row-delimiter">
+  	    				<option value=",">Comma</option>
+  	    				<option value="&#10;" selected>Newline</option>
+  	    				<option value=" ">Space</option>
+  	    				<option value="&#9;">Tab</option>
+  	    			</select>
+  	    			Row
+  	    		</label>
+  	    		<label>
+  	    			<select id="col-delimiter">
+  	    				<option value=",">Comma</option>
+  	    				<option value="&#10;">Newline</option>
+  	    				<option value=" ">Space</option>
+  	    				<option value="&#9;" selected>Tab</option>
+  	    			</select>
+  	    			Column
+  	    		</label>
   	  		</form>
   		</div>
   		<div class="form-group">

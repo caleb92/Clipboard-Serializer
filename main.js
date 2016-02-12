@@ -1,6 +1,7 @@
 var inputEl,
 	outputEl,
-	inputType,
+	rowDelimiter,
+	colDelimiter,
 	outputType,
 	copyButton,
 	messageEl;
@@ -13,51 +14,40 @@ window.onload = function() {
 
 function cacheDOM() {
 	inputEl = document.getElementById('input');
+	inputEl.addEventListener('click',function(){this.select();})
+	inputEl.addEventListener('input',serialize);
+	inputEl.addEventListener('keydown',delegateTab);
+
 	outputEl = document.getElementById('output');
 
-	var inputTypeEls = [].slice.call(document.getElementById('delimiters-form').getElementsByTagName('input'));
+	var rowDelimiterEl = document.getElementById('row-delimiter');
+	rowDelimiterEl.addEventListener('change',function(){rowDelimiter = this.selectedOptions[0].value;serialize();})
+	rowDelimiter = rowDelimiterEl.selectedOptions[0].value;
+	var colDelimiterEl = document.getElementById('col-delimiter');
+	colDelimiterEl.addEventListener('change',function(){colDelimiter = this.selectedOptions[0].value;serialize();})
+	colDelimiter = colDelimiterEl.selectedOptions[0].value;
+
 	var outputTypeEls = [].slice.call(document.getElementById('output-form').getElementsByTagName('input'));
-	var inputTypeEl = inputTypeEls.filter(function(el) {
-		return el.checked;
-	})[0];
-	var outputTypeEl = outputTypeEls.filter(function(el) {
-		return el.checked;
-	})[0];
-	inputType = inputTypeEl.value;
-	outputType = outputTypeEl.value;
-
-	copyButton = document.getElementById('copy');
-	messageEl = document.getElementById('message');
-
-	inputEl.addEventListener('click',function(e){e.target.select();})
-	inputEl.addEventListener('input',serialize);
-	inputTypeEls.forEach(function(el) {
-		el.addEventListener('click', function() {
-			if (inputType != el.value) {
-				inputType = el.value;
-			}
-		})
-	})
 	outputTypeEls.forEach(function(el) {
 		el.addEventListener('click', function() {
 			if (outputType != el.value) {
 				outputType = el.value;
+				serialize();
 			}
 		})
 	})
+	outputType = outputTypeEls.filter( (el)=>el.checked )[0].value;
+
+	copyButton = document.getElementById('copy');
 	copyButton.addEventListener('click', copyToClipboard);
+	messageEl = document.getElementById('message');
 }
 
 function serialize() {
 	var input = inputEl.value,
 		output,
-		rowDelimiter,
-		colDelimiter,
 		rows,
 		data;
-
-	rowDelimiter = "\n";
-	colDelimiter = "\t";
 
 	rows = input.split(rowDelimiter);
 	data = rows.map(function(row) {
@@ -116,10 +106,22 @@ function copyToClipboard() {
 }
 
 function flashMessage() {
-	// messageEl.style.display = 'initial';
-	// messageEl.classList.remove('hidden');
 	messageEl.classList.add('show');
 	setTimeout(function(){
 		messageEl.classList.remove('show');
 	}, 800);
+}
+
+function delegateTab(e) {
+	var keyCode = e.keyCode || e.which;
+	if (e.keyCode === 9) {
+		e.preventDefault();
+	    var val = this.value,
+	        start = this.selectionStart,
+	        end = this.selectionEnd;
+
+	    this.value = val.substring(0, start) + '\t' + val.substring(end);
+	    this.selectionStart = this.selectionEnd = start + 1;
+	    return false;
+	}
 }
