@@ -3,6 +3,7 @@ var inputEl,
 	rowDelimiter,
 	colDelimiter,
 	outputType,
+	format,
 	copyButton,
 	messageEl;
 
@@ -38,6 +39,17 @@ function cacheDOM() {
 	})
 	outputType = outputTypeEls.filter( (el)=>el.checked )[0].value;
 
+	var formatEls = [].slice.call(document.getElementById('format-form').getElementsByTagName('input'));
+	formatEls.forEach(function(el) {
+		el.addEventListener('click', function() {
+			if (format != el.value) {
+				format = el.value;
+				serialize();
+			}
+		})
+	})
+	format = formatEls.filter( (el)=>el.checked )[0].value;
+
 	copyButton = document.getElementById('copy');
 	copyButton.addEventListener('click', copyToClipboard);
 	messageEl = document.getElementById('message');
@@ -47,7 +59,11 @@ function serialize() {
 	var input = inputEl.value,
 		output,
 		rows,
-		data;
+		data,
+		formatFunc = 
+			format === 'none' ? formatNone : 
+			format === 'strings' ? formatString :
+			format === 'numbers' ? formatNumber : formatBoth;
 
 	rows = input.split(rowDelimiter);
 	data = rows.map(function(row) {
@@ -64,27 +80,45 @@ function serialize() {
 					raw.push({
 						rh: rowHead,
 						ch: colHeads[i+1],
-						d: cell
+						d: formatFunc(cell)
 					});
 				});
 			});
 			output = JSON.stringify(raw);
 			break;
 		case "js-array-2d":
+			data.forEach( (row)=>row.forEach( (e,i,a)=>(a[i]=formatFunc(e)) ) );
 			output = JSON.stringify(data);
 			break;
 		case "js-array-1d":
-			var raw = JSON.stringify(data);
-			output = '[' + raw.replace(/\[/g,'').replace(/\]/g,'') + ']';
+			data.forEach( (row)=>row.forEach( (e,i,a)=>(a[i]=formatFunc(e)) ) );
+			data = JSON.stringify(data);
+			output = '[' + data.replace(/\[/g,'').replace(/\]/g,'') + ']';
 			break;
 		case "csv":
-			raw = JSON.stringify(data);
-			output = raw.replace(/\[/g,'').replace(/\]/g,'');
+			data.forEach( (row)=>row.forEach( (e,i,a)=>(a[i]=formatFunc(e)) ) );
+			data = JSON.stringify(data);
+			output = data.replace(/\[/g,'').replace(/\]/g,'');
 			break;
 		default:
 			console.warn('main.js serialize() unknown outputType!');
 	}
+	if (format === 'none') output = output.replace(/'/g,'');
 	outputEl.value = output;
+}
+
+function formatNone(s) {
+	return s;
+}
+function formatString(s) {
+	return s;
+}
+function formatNumber(s) {
+	return Number(s);
+}
+function formatBoth(s) {
+	var n = Number(s);
+	return isNaN(n) ? s : n;
 }
 
 function copyToClipboard() {
