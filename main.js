@@ -2,7 +2,7 @@ var inputEl,
 	outputEl,
 	inputType,
 	outputType,
-	serializeButton,
+	copyButton,
 	messageEl;
 
 var raw;
@@ -26,7 +26,7 @@ function cacheDOM() {
 	inputType = inputTypeEl.value;
 	outputType = outputTypeEl.value;
 
-	serializeButton = document.getElementById('serialize');
+	copyButton = document.getElementById('copy');
 	messageEl = document.getElementById('message');
 
 	inputEl.addEventListener('click',function(e){e.target.select();})
@@ -45,7 +45,7 @@ function cacheDOM() {
 			}
 		})
 	})
-	serializeButton.addEventListener('click', serialize);
+	copyButton.addEventListener('click', copyToClipboard);
 }
 
 function serialize() {
@@ -95,7 +95,6 @@ function serialize() {
 			console.warn('main.js serialize() unknown outputType!');
 	}
 	outputEl.value = output;
-	// copyToClipboard();
 }
 
 function copyToClipboard() {
