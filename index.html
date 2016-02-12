@@ -15,19 +15,44 @@
   <div id="container">
   	<div id="options">
 		<div class="form-group">
-  	  		<p>Copied From</p>
-  	  		<form id="input-form">
-  	    		<label><input type="radio"  name="input-type" value="gs" checked/>Google Sheets</label>
-  	    		<label><input type="radio"  name="input-type" value="excel" disabled />Excel</label>
+  	  		<p>Delimiters</p>
+  	  		<form id="delimiters-form">
+  	    		<label>
+  	    			<select id="row-delimiter">
+  	    				<option value=",">Comma</option>
+  	    				<option value="&#10;" selected>Newline</option>
+  	    				<option value=" ">Space</option>
+  	    				<option value="&#9;">Tab</option>
+  	    			</select>
+  	    			Row
+  	    		</label>
+  	    		<label>
+  	    			<select id="col-delimiter">
+  	    				<option value=",">Comma</option>
+  	    				<option value="&#10;">Newline</option>
+  	    				<option value=" ">Space</option>
+  	    				<option value="&#9;" selected>Tab</option>
+  	    			</select>
+  	    			Column
+  	    		</label>
   	  		</form>
   		</div>
   		<div class="form-group">
-  			<p>Output As</p>
+  			<p>Output</p>
   			<form id="output-form">
   			    <label><input type="radio" name="output-type" value="js-array-objects" checked/>JS Objects</label>
   			    <label><input type="radio" name="output-type" value="js-array-2d" />JS Array (2d)</label>
   			    <label><input type="radio" name="output-type" value="js-array-1d" />JS Array (1d)</label>
   			    <label><input type="radio" name="output-type" value="csv" />CSV</label>
+  			</form>
+  		</div>
+  		<div class="form-group">
+  			<p>Format</p>
+  			<form id="format-form">
+  			    <label><input type="radio" name="format" value="none" />None</label>
+  			    <label><input type="radio" name="format" value="strings" checked/>Strings</label>
+  			    <label><input type="radio" name="format" value="numbers" />Numbers</label>
+  			    <label><input type="radio" name="format" value="both" />Both</label>
   			</form>
   		</div>
   	</div>
@@ -37,7 +62,7 @@
 	<div>
 		<input id="output"></input>
 	</div>
-	<button id="serialize">Serialize</button>
+	<button id="copy">Copy</button>
 	<span id="message">Copied To Clipboard!</span>
   </div>
   </main>
