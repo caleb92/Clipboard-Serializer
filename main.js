@@ -15,7 +15,7 @@ function cacheDOM() {
 	inputEl = document.getElementById('input');
 	outputEl = document.getElementById('output');
 
-	var inputTypeEls = [].slice.call(document.getElementById('input-form').getElementsByTagName('input'));
+	var inputTypeEls = [].slice.call(document.getElementById('delimiters-form').getElementsByTagName('input'));
 	var outputTypeEls = [].slice.call(document.getElementById('output-form').getElementsByTagName('input'));
 	var inputTypeEl = inputTypeEls.filter(function(el) {
 		return el.checked;
@@ -30,6 +30,7 @@ function cacheDOM() {
 	messageEl = document.getElementById('message');
 
 	inputEl.addEventListener('click',function(e){e.target.select();})
+	inputEl.addEventListener('input',serialize);
 	inputTypeEls.forEach(function(el) {
 		el.addEventListener('click', function() {
 			if (inputType != el.value) {
@@ -94,7 +95,7 @@ function serialize() {
 			console.warn('main.js serialize() unknown outputType!');
 	}
 	outputEl.value = output;
-	copyToClipboard();
+	// copyToClipboard();
 }
 
 function copyToClipboard() {
